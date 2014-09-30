@@ -509,7 +509,7 @@ would happen if the current value happened to be `false`.)
 * Always run the Ruby interpreter with the `-w` option so it will warn
 you if you forget either of the rules above!
 
-* Choose between hashrocket and new hash syntax using good sence.
+* Choose between hashrocket and new hash syntax using good sense.
 Here are some examples
 
     ```Ruby
