@@ -15,7 +15,7 @@ The guide is separated into several sections of related rules. I've
 tried to add the rationale behind the rules (if it's omitted I've
 assumed that is pretty obvious).
 
-Please add to this guide if you find any particular patterns or styles that we've adopted internally. 
+Please add to this guide if you find any particular patterns or styles that we've adopted internally.
 Submit a pull request to ask for feedback (if you're an employee).
 
 ## Source Code Layout
@@ -252,7 +252,7 @@ Submit a pull request to ask for feedback (if you're an employee).
 
 * Never use `when x; ...`. See the previous rule.
 
-* Use `&&/||` for boolean expressions, `and/or` for control flow.  (Rule
+* The and and or keywords are banned. It's just not worth it. Always use && and || instead.  (Rule
   of thumb: If you have to use outer parentheses, you are using the
   wrong operators.)
 
@@ -263,7 +263,7 @@ Submit a pull request to ask for feedback (if you're an employee).
     end
 
     # control flow
-    document.saved? or document.save!
+    document.saved? || document.save!
     ```
 
 * Avoid multi-line `?:` (the ternary operator), use `if/unless` instead.
@@ -338,7 +338,7 @@ Submit a pull request to ask for feedback (if you're an employee).
     ```
 
 * Favor modifier `while/until` usage when you have a single-line
-  body. 
+  body.
 
     ```Ruby
     # bad
@@ -465,7 +465,7 @@ Submit a pull request to ask for feedback (if you're an employee).
 
     # bad
     if v = array.grep(/foo/) ...
-    
+
     # also good - shows intended use of assignment and has correct precedence.
     if (v = self.next_value) == "hello" ...
     ```
@@ -599,13 +599,13 @@ Here are some examples
     ```
 
 * Define the non-bang (safe) method in terms of the bang (dangerous)
-  one if possible. 
+  one if possible.
 
     ```Ruby
     class Array
       def flatten_once!
         res = []
-      
+
         each do |e|
           [*e].each { |f| res << f }
         end
@@ -617,7 +617,7 @@ Here are some examples
         dup.flatten_once!
       end
     end
-    ```    
+    ```
 
 * When using `reduce` with short blocks, name the arguments `|a, e|`
   (accumulator, element).
@@ -777,7 +777,7 @@ constructor and comparison operators for you.
     class Person < Struct.new (:first_name, :last_name)
     end
     ````
-  
+
 * Consider adding factory methods to provide additional sensible ways
 to create instances of a particular class.
 
@@ -926,7 +926,7 @@ in *Ruby* now, not in *Python*.
       end
     end
     ```
-    
+
 * Don't suppress exceptions.
 
     ```Ruby
@@ -940,7 +940,7 @@ in *Ruby* now, not in *Python*.
     # bad
     do_something rescue nil
     ```
-  
+
 * Don't use exceptions for flow of control.
 
     ```Ruby
@@ -958,7 +958,7 @@ in *Ruby* now, not in *Python*.
       n / d
     end
     ```
-  
+
 * Avoid rescuing the `Exception` class.  This will trap signals and calls to
   `exit`, requiring you to `kill -9` the process.
 
@@ -1026,7 +1026,7 @@ block.
       f.close unless f.nil?
     end
     ```
-  
+
 * Favor the use of exceptions for the standard library over
 introducing new exception classes.
 
@@ -1066,7 +1066,7 @@ strings.
 * Use `Set` instead of `Array` when dealing with unique elements. `Set`
   implements a collection of unordered values with no duplicates. This
   is a hybrid of `Array`'s intuitive inter-operation facilities and
-  `Hash`'s fast lookup. 
+  `Hash`'s fast lookup.
 * Use symbols instead of strings as hash keys.
 
     ```Ruby
@@ -1273,15 +1273,15 @@ syntax.
 * Do not mess around in core classes when writing libraries. (Do not monkey
 patch them.)
 
-* The block form of `class_eval` is preferable to the string-interpolated form. 
+* The block form of `class_eval` is preferable to the string-interpolated form.
   - when you use the string-interpolated form, always supply `__FILE__` and `__LINE__`, so that your backtraces make sense:
 
     ```ruby
     class_eval "def use_relative_model_naming?; true; end", __FILE__, __LINE__
     ```
-    
+
   - `define_method` is preferable to `class_eval{ def ... }`
-    
+
 * When using `class_eval` (or other `eval`) with string interpolation, add a comment block showing its appearance if interpolated (a practice I learned from the rails code):
 
     ```ruby
