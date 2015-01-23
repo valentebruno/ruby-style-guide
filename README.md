@@ -252,7 +252,7 @@ Submit a pull request to ask for feedback (if you're an employee).
 
 * Never use `when x; ...`. See the previous rule.
 
-* Don't ever use `and/or`, always use `&&/||` for boolean expressions and control flow.  (Rule
+* The and and or keywords are banned. It's just not worth it. Always use && and || instead.  (Rule
   of thumb: If you have to use outer parentheses, you are using the
   wrong operators.)
 
